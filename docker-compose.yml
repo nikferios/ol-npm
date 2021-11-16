@@ -1,0 +1,21 @@
+version: "3.3"
+
+services:
+  npm:
+    container_name: npm
+    image: 'jc21/nginx-proxy-manager:latest'
+    hostname: npm # your hostname here
+    domainname: overlogic.gr # your domain here
+    restart: unless-stopped
+    ports:
+      - '80:80'
+      - '443:443'
+      - '81:81'
+    networks:
+      proxy:
+    volumes:
+      - /overlogic/data/npm:/data
+      - /overlogic/certs/npm:/etc/letsencrypt
+
+networks:
+  proxy:
